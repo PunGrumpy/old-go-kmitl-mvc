@@ -1,0 +1,24 @@
+name: 🔒 Security
+on:
+  workflow_call:
+concurrency:
+  group: security/${{ github.event.repository.name }}
+jobs:
+  trivy:
+    concurrency:
+      group: security/${{ github.event.repository.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    name: 🐳 Trivy
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 🛫 Checkout Code
+        uses: actions/checkout@v4
+      - name: 🐳 Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          trivy-config: .github/trivy.yaml
