@@ -3,3 +3,13 @@
 // =================================================================================
 
 package hello
+
+import (
+	"kmitl-mvc/api/hello"
+)
+
+type ControllerV1 struct{}
+
+func HelloV1() hello.IHelloV1 {
+	return &ControllerV1{}
+}

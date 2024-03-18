@@ -1,16 +1,14 @@
-// =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. 
-// =================================================================================
-
 package hello
 
 import (
-	"kmitl-mvc/api/hello"
+	"context"
+
+	"github.com/gogf/gf/v2/frame/g"
+
+	v1 "kmitl-mvc/api/hello/v1"
 )
 
-type ControllerV1 struct{}
-
-func NewV1() hello.IHelloV1 {
-	return &ControllerV1{}
+func (c *ControllerV1) Hello(ctx context.Context, req *v1.HelloReq) (res *v1.HelloRes, err error) {
+	g.RequestFromCtx(ctx).Response.Writeln("Hello, I'm 65050437 Noppakorn")
+	return
 }
-
